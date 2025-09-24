@@ -6,7 +6,7 @@ A smart mirror that can help you decide if you're comfortable with your outfit.
 
 Mirror Mirror AI is an innovative smart mirror project that combines computer vision, machine learning, and user interaction to provide personalized outfit recommendations. The system identifies clothing in real-time, recognizes individual users, and delivers adaptive feedback-driven suggestions.
 
-## 🚀 Live Demo
+## 🚀 Live Landing Page git
 
 **[View Live Website](https://aviad1486.github.io/Machine-Learning/)**
 
@@ -71,7 +71,7 @@ Our findings show that the system successfully:
 
 ## 🔗 Links
 
-- **🌐 [Live Website](https://ilihis.github.io/git-dinamic-page/)**
+- **🌐 [Live Website](https://aviad1486.github.io/Machine-Learning/)**
 - **🎬 [Demo Presentation](https://www.canva.com/design/DAGzsCh04XU/pAElWKISa-OeqFAqpbcSkQ/edit?utm_content=DAGzsCh04XU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
 - **📹 [Watch Marking Video](https://www.canva.com/design/DAGzsPHfhyU/LOvqWDIlEEccAweBjKIE0w/edit?utm_content=DAGzsPHfhyU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
 - **📊 [Explanatory Presentation](https://www.canva.com/design/DAGzV3dyELE/FtfjOwmDhIZZoSNEObPtIQ/edit?utm_content=DAGzV3dyELE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
