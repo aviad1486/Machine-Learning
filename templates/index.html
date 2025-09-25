@@ -1045,7 +1045,7 @@
                         if (data.user.name !== 'Guest') {
                             const recommendationSource = data.user.recommendation_source || 'rules';
                             const sourceIcon = recommendationSource === 'ai' ? '🤖' : '📋';
-                            const sourceText = recommendationSource === 'ai' ? 'AI Neural Network' : 'Rule-based Learning';
+                            const sourceText = recommendationSource === 'ai' ? 'AI Model' : 'Rule-based Learning';
                             
                             userSection.innerHTML = `
                                 <h4>👤 ${data.user.name}</h4>
@@ -1080,9 +1080,9 @@
                         if (recommendationSource === 'ai') {
                             const confidence = Math.round(data.user.confidence * 100);
                             if (confidence > 80) {
-                                voiceText += `I'm using my AI neural network to analyze your preferences with ${confidence}% confidence. `;
+                                voiceText += `I'm using my AI Model to analyze your preferences with ${confidence}% confidence. `;
                             } else {
-                                voiceText += `I'm using my AI neural network to analyze your style preferences. `;
+                                voiceText += `I'm using my AI Model to analyze your style preferences. `;
                             }
                         } else {
                             const confidence = Math.round(data.user.confidence * 100);
