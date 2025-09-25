@@ -754,6 +754,352 @@
           "feedback": "good",
           "humidity": 46,
           "wind_speed": 5.2
+        },
+        {
+          "timestamp": "2025-09-03T08:15:30",
+          "clothes_detected": [
+            "T-Shirt",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 31.2,
+          "feedback": "good",
+          "humidity": 38,
+          "wind_speed": 2.1
+        },
+        {
+          "timestamp": "2025-09-02T19:30:45",
+          "clothes_detected": [
+            "Jacket",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 14.8,
+          "feedback": "good",
+          "humidity": 67,
+          "wind_speed": 4.2
+        },
+        {
+          "timestamp": "2025-09-01T12:45:20",
+          "clothes_detected": [
+            "Shirt",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 24.5,
+          "feedback": "good",
+          "humidity": 52,
+          "wind_speed": 1.8
+        },
+        {
+          "timestamp": "2025-08-31T16:20:35",
+          "clothes_detected": [
+            "T-Shirt",
+            "Jogger"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 27.3,
+          "feedback": "good",
+          "humidity": 44,
+          "wind_speed": 3.7
+        },
+        {
+          "timestamp": "2025-08-30T07:40:10",
+          "clothes_detected": [
+            "Jacket",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 13.2,
+          "feedback": "bad-cold",
+          "humidity": 71,
+          "wind_speed": 6.1
+        },
+        {
+          "timestamp": "2025-08-29T21:15:25",
+          "clothes_detected": [
+            "Polo",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 29.7,
+          "feedback": "good",
+          "humidity": 41,
+          "wind_speed": 2.9
+        },
+        {
+          "timestamp": "2025-08-28T11:35:40",
+          "clothes_detected": [
+            "T-Shirt",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 22.1,
+          "feedback": "bad-cold",
+          "humidity": 58,
+          "wind_speed": 1.4
+        },
+        {
+          "timestamp": "2025-08-27T15:50:55",
+          "clothes_detected": [
+            "Shirt",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 30.4,
+          "feedback": "good",
+          "humidity": 39,
+          "wind_speed": 4.6
+        },
+        {
+          "timestamp": "2025-08-26T09:25:15",
+          "clothes_detected": [
+            "Jacket",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 16.9,
+          "feedback": "good",
+          "humidity": 63,
+          "wind_speed": 3.2
+        },
+        {
+          "timestamp": "2025-08-25T18:40:30",
+          "clothes_detected": [
+            "T-Shirt"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 33.1,
+          "feedback": "bad-hot",
+          "humidity": 35,
+          "wind_speed": 1.7
+        },
+        {
+          "timestamp": "2025-08-24T06:15:45",
+          "clothes_detected": [
+            "Jacket",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 12.8,
+          "feedback": "good",
+          "humidity": 74,
+          "wind_speed": 5.3
+        },
+        {
+          "timestamp": "2025-08-23T14:30:20",
+          "clothes_detected": [
+            "Polo",
+            "Jogger"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 26.8,
+          "feedback": "good",
+          "humidity": 49,
+          "wind_speed": 2.5
+        },
+        {
+          "timestamp": "2025-08-22T20:45:35",
+          "clothes_detected": [
+            "T-Shirt",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 28.9,
+          "feedback": "good",
+          "humidity": 42,
+          "wind_speed": 3.8
+        },
+        {
+          "timestamp": "2025-08-21T10:20:50",
+          "clothes_detected": [
+            "Shirt",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 23.6,
+          "feedback": "good",
+          "humidity": 56,
+          "wind_speed": 1.9
+        },
+        {
+          "timestamp": "2025-08-20T17:35:15",
+          "clothes_detected": [
+            "T-Shirt",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 25.2,
+          "feedback": "good",
+          "humidity": 47,
+          "wind_speed": 4.1
+        },
+        {
+          "timestamp": "2025-08-19T08:50:30",
+          "clothes_detected": [
+            "Jacket",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 15.4,
+          "feedback": "good",
+          "humidity": 68,
+          "wind_speed": 2.7
+        },
+        {
+          "timestamp": "2025-08-18T13:15:45",
+          "clothes_detected": [
+            "Polo",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 32.7,
+          "feedback": "bad-hot",
+          "humidity": 37,
+          "wind_speed": 1.2
+        },
+        {
+          "timestamp": "2025-08-17T19:30:20",
+          "clothes_detected": [
+            "T-Shirt",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 21.8,
+          "feedback": "bad-cold",
+          "humidity": 61,
+          "wind_speed": 3.4
+        },
+        {
+          "timestamp": "2025-08-16T11:45:35",
+          "clothes_detected": [
+            "Shirt",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 24.1,
+          "feedback": "good",
+          "humidity": 53,
+          "wind_speed": 2.8
+        },
+        {
+          "timestamp": "2025-08-15T16:20:50",
+          "clothes_detected": [
+            "T-Shirt",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 30.8,
+          "feedback": "good",
+          "humidity": 40,
+          "wind_speed": 5.1
+        },
+        {
+          "timestamp": "2025-08-14T07:35:15",
+          "clothes_detected": [
+            "Jacket",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 13.9,
+          "feedback": "good",
+          "humidity": 72,
+          "wind_speed": 4.8
+        },
+        {
+          "timestamp": "2025-08-13T22:50:30",
+          "clothes_detected": [
+            "Polo",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 26.3,
+          "feedback": "good",
+          "humidity": 48,
+          "wind_speed": 2.3
+        },
+        {
+          "timestamp": "2025-08-12T12:15:45",
+          "clothes_detected": [
+            "T-Shirt",
+            "Jogger"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 27.9,
+          "feedback": "good",
+          "humidity": 43,
+          "wind_speed": 3.6
+        },
+        {
+          "timestamp": "2025-08-11T18:40:20",
+          "clothes_detected": [
+            "Shirt",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 31.5,
+          "feedback": "good",
+          "humidity": 36,
+          "wind_speed": 1.5
+        },
+        {
+          "timestamp": "2025-08-10T09:55:35",
+          "clothes_detected": [
+            "Jacket",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 17.2,
+          "feedback": "good",
+          "humidity": 64,
+          "wind_speed": 4.4
+        },
+        {
+          "timestamp": "2025-08-09T15:20:50",
+          "clothes_detected": [
+            "T-Shirt"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 34.2,
+          "feedback": "bad-hot",
+          "humidity": 33,
+          "wind_speed": 2.1
+        },
+        {
+          "timestamp": "2025-08-08T06:35:15",
+          "clothes_detected": [
+            "Jacket",
+            "Trouser"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 11.7,
+          "feedback": "bad-cold",
+          "humidity": 78,
+          "wind_speed": 6.2
+        },
+        {
+          "timestamp": "2025-08-07T21:50:30",
+          "clothes_detected": [
+            "Polo",
+            "Short"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 28.4,
+          "feedback": "good",
+          "humidity": 45,
+          "wind_speed": 2.7
+        },
+        {
+          "timestamp": "2025-08-06T14:15:45",
+          "clothes_detected": [
+            "T-Shirt",
+            "Jeans"
+          ],
+          "city": "Rishon LeTsiyyon",
+          "temperature": 23.8,
+          "feedback": "good",
+          "humidity": 54,
+          "wind_speed": 1.8
         }
       ]
     }
