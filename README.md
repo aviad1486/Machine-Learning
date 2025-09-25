@@ -1,6 +1,6 @@
 # 🪞 Mirror Mirror AI - Smart Clothing Recommendation System
 
-An intelligent AI system for clothing recommendations based on facial recognition, clothing detection, weather data, and user feedback learning.
+An intelligent AI system for clothing recommendations based on facial recognition, clothing detection, weather data, and user feedback learning. Now featuring both **terminal interface** and **modern web UI** for enhanced user experience.
 
 ## 🌟 Key Features
 
@@ -15,10 +15,15 @@ An intelligent AI system for clothing recommendations based on facial recognitio
 - **Advanced Metrics**: Temperature, humidity, and wind speed
 - **Accurate Predictions**: Weather-aware recommendations
 
-### 🗣️ Interactive Interface
+### 🌐 Dual Interface Options
+1. **Web Interface** (New!) - Modern, interactive browser-based UI
+2. **Terminal Interface** - Command-line based interaction
+
+### 🗣️ Interactive Features
 - **Voice Recognition**: Voice command recognition
 - **Voice Responses**: Text-to-Speech system
 - **Visual Interface**: Real-time camera display
+- **Web Controls**: Interactive buttons and real-time feedback
 
 ## � Technology Stack
 
@@ -72,6 +77,13 @@ An intelligent AI system for clothing recommendations based on facial recognitio
 
 ## 🚀 Installation
 
+### Quick Setup (Web Interface)
+```bash
+python setup_web.py
+```
+
+### Manual Setup
+
 ### Step 1: Clone the Repository
 ```bash
 git clone <repository-url>
@@ -111,7 +123,26 @@ The system will automatically download the YOLO model on first run.
 
 ## 🎮 Usage
 
-### Basic Usage
+### Option 1: Web Interface (Recommended)
+
+1. **Launch Web App**:
+```bash
+python app.py
+```
+
+2. **Open Browser**: Navigate to `http://localhost:5000`
+
+3. **Web Interface Features**:
+   - 📹 **Camera Control**: Start/stop camera with interactive buttons
+   - 👤 **User Management**: Face recognition and new user enrollment
+   - 👕 **Clothing Detection**: Real-time scanning with visual feedback
+   - 🧠 **AI Recommendations**: Smart suggestions with confidence scores
+   - 💬 **Interactive Feedback**: Click-based feedback system
+   - 📊 **Session History**: View past recommendations and trends
+   - 📱 **Responsive Design**: Works on desktop, tablet, and mobile
+
+### Option 2: Terminal Interface
+
 ```bash
 python RecommendationSystemMirror.py
 ```
@@ -125,24 +156,53 @@ python simple_ai_engine.py
 
 ```
 Machine Learning/
-├── RecommendationSystemMirror.py  # Main program
-├── face_id.py                     # Face recognition module
-├── simple_ai_engine.py           # AI engine
-├── enhanced_ai_engine.py         # Enhanced AI with time weighting
-├── ai_training_collector.py      # Training data collection
-├── model_analysis.py             # Performance analysis tool
-├── preference_trend_analyzer.py  # Preference trend analysis
-├── users.json                    # User data
-├── ai_training_data.jsonl        # AI training data
-├── classes.txt                   # Clothing categories
-├── .env                          # Environment settings
-├── requirements.txt              # Dependencies
-└── README.md                     # This guide
+├── 🌐 Web Interface
+│   ├── app.py                         # Flask web application
+│   ├── setup_web.py                   # Web interface setup script
+│   ├── templates/
+│   │   ├── index.html                 # Main web interface
+│   │   ├── 404.html                   # Error pages
+│   │   └── 500.html
+│   └── static/                        # CSS, JS, images
+├── 🖥️ Core System
+│   ├── RecommendationSystemMirror.py  # Main terminal program
+│   ├── face_id.py                     # Face recognition module
+│   ├── simple_ai_engine.py            # AI engine
+│   ├── enhanced_ai_engine.py          # Enhanced AI with time weighting
+│   ├── ai_training_collector.py       # Training data collection
+│   ├── model_analysis.py              # Performance analysis tool
+│   └── preference_trend_analyzer.py   # Preference trend analysis
+├── 📊 Visualizations
+│   ├── create_landing_page_graphs.py  # GitHub visualization generator
+│   ├── model_accuracy_evolution.png   # Performance graphs
+│   ├── user_preference_adaptation.png
+│   ├── accuracy_by_type.png
+│   ├── response_time_breakdown.png
+│   ├── user_satisfaction_growth.png
+│   └── feature_importance.png
+├── 🗃️ Data & Config
+│   ├── users.json                     # User data
+│   ├── ai_training_data.jsonl         # AI training data
+│   ├── classes.txt                    # Clothing categories
+│   ├── .env                           # Environment settings
+│   └── requirements.txt               # Dependencies
+└── README.md                          # This guide
 ```
 
 ## 🎯 How to Use
 
-### Basic Workflow
+### Web Interface Workflow
+1. **Launch Web App**: `python app.py` → Open `http://localhost:5000`
+2. **Start Camera**: Click "Start Camera" button
+3. **User Recognition**: 
+   - Click "Recognize Me" for existing users
+   - Click "New User" to enroll your face
+4. **Scan Clothes**: Click "Start Scanning" and show your outfit
+5. **Get Recommendations**: Click "Get Smart Recommendations"
+6. **Provide Feedback**: Rate recommendations (Good/Too Cold/Too Hot)
+7. **View History**: Check past sessions and trends
+
+### Terminal Interface Workflow
 1. **Launch**: Run the main program
 2. **Recognition**: Stand in front of the camera for face recognition
 3. **Registration**: If you're a new user - enter your name
@@ -150,7 +210,7 @@ Machine Learning/
 5. **Recommendation**: Get AI recommendation on outfit suitability
 6. **Feedback**: Provide feedback (good/cold/hot) for system learning
 
-### Voice Commands
+### Voice Commands (Terminal Only)
 - **"analyze"** - Start analysis
 - **"good"** - Good recommendation
 - **"cold"** - I'm cold

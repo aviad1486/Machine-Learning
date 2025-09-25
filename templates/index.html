@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirror Mirror AI - Smart Fashion Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            height: calc(100vh - 200px);
+        }
+
+        .camera-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .camera-container {
+            position: relative;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #videoFeed {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+        }
+
+        .camera-placeholder {
+            color: #666;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .control-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+
+        .panel-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .panel-section:last-child {
+            border-bottom: none;
+        }
+
+        .panel-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .status-active {
+            background: #4caf50;
+            box-shadow: 0 0 10px #4caf50;
+        }
+
+        .status-inactive {
+            background: #ccc;
+        }
+
+        .detected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .clothing-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .user-info {
+            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .user-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .recommendations {
+            margin-top: 20px;
+        }
+
+        .recommendation-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .recommendation-item.appropriate {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+
+        .recommendation-item.too-warm {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .recommendation-item.too-light {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+
+        .weather-info {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .feedback-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .feedback-detail {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .feedback-detail.show {
+            display: block;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.info {
+            background: #17a2b8;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin: 15px 0;
+        }
+
+        .history-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .history-item .timestamp {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .history-item .clothes {
+            margin: 5px 0;
+        }
+
+        .voice-feedback-status {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            text-align: center;
+            color: #1976d2;
+        }
+
+        .voice-feedback-status i {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .voice-controls {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .voice-controls h4 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .btn-voice {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .btn-voice:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-voice.recording {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            animation: pulse 1s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .camera-controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-magic"></i> Mirror Mirror AI</h1>
+            <p>Your Smart Fashion Assistant - Powered by Computer Vision & Weather Intelligence</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Camera Section -->
+            <div class="camera-section">
+                <div class="camera-container">
+                    <img id="videoFeed" style="display: none;" alt="Camera Feed">
+                    <div id="cameraPlaceholder" class="camera-placeholder">
+                        <i class="fas fa-camera fa-3x"></i>
+                        <p>Click "Start Camera" to begin</p>
+                    </div>
+                </div>
+                
+                <div class="camera-controls">
+                    <button class="btn btn-primary" onclick="startCamera()">
+                        <i class="fas fa-video"></i> Start Camera
+                    </button>
+                    <button class="btn btn-warning" onclick="toggleScanning()" id="scanBtn" disabled>
+                        <i class="fas fa-search"></i> Start Scanning
+                    </button>
+                    <button class="btn btn-danger" onclick="stopCamera()">
+                        <i class="fas fa-stop"></i> Stop Camera
+                    </button>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <!-- User Recognition -->
+                <div class="panel-section">
+                    <h3><i class="fas fa-user"></i> User Recognition</h3>
+                    <div id="userInfo" class="user-info" style="display: none;">
+                        <h4 id="userName">Welcome!</h4>
+                        <p id="userDetails">Ready to get recommendations</p>
+                    </div>
+                    <button class="btn btn-success" onclick="recognizeFace()">
+                        <i class="fas fa-user-check"></i> Recognize Me
+                    </button>
+                    <button class="btn btn-primary" onclick="showEnrollModal()">
+                        <i class="fas fa-user-plus"></i> New User
+                    </button>
+                </div>
+
+                <!-- Detection Status -->
+                <div class="panel-section">
+                    <h3><i class="fas fa-tshirt"></i> Clothing Detection</h3>
+                    <p>Scanning Status: <span class="status-indicator" id="scanStatus"></span></p>
+                    <div id="detectedItems" class="detected-items">
+                        <p style="color: #666;">No items detected yet</p>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="panel-section">
+                    <h3><i class="fas fa-brain"></i> AI Recommendations</h3>
+                    <button class="btn btn-primary" onclick="getRecommendations()">
+                        <i class="fas fa-magic"></i> Get Smart Recommendations
+                    </button>
+                    
+                    <div id="weatherInfo" style="display: none;"></div>
+                    <div id="recommendations" class="recommendations"></div>
+                    
+                    <div id="feedbackSection" class="feedback-section" style="display: none;">
+                        <h4>How do you feel about these recommendations?</h4>
+                        <div class="feedback-buttons">
+                            <button class="btn btn-success" onclick="submitFeedback('good')">
+                                <i class="fas fa-thumbs-up"></i> Good
+                            </button>
+                            <button class="btn btn-warning" onclick="showFeedbackDetail()">
+                                <i class="fas fa-thumbs-down"></i> Not Good
+                            </button>
+                            <button class="btn btn-primary" onclick="startVoiceFeedback()" id="voiceFeedbackBtn">
+                                <i class="fas fa-microphone"></i> Voice Feedback
+                            </button>
+                        </div>
+                        
+                        <div id="feedbackDetail" class="feedback-detail">
+                            <h5>Why didn't it feel right?</h5>
+                            <div class="feedback-buttons">
+                                <button class="btn btn-primary" onclick="submitFeedback('bad', 'cold')">
+                                    <i class="fas fa-snowflake"></i> Too Cold
+                                </button>
+                                <button class="btn btn-danger" onclick="submitFeedback('bad', 'hot')">
+                                    <i class="fas fa-fire"></i> Too Hot
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="voiceFeedbackStatus" class="voice-feedback-status" style="display: none;">
+                            <p><i class="fas fa-microphone-alt"></i> <span id="voiceStatusText">Listening...</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session History -->
+                <div class="panel-section">
+                    <h3><i class="fas fa-history"></i> Session History</h3>
+                    <button class="btn btn-primary" onclick="loadHistory()">
+                        <i class="fas fa-chart-line"></i> View History
+                    </button>
+                    <button class="btn btn-warning" onclick="resetSession()">
+                        <i class="fas fa-refresh"></i> Reset Session
+                    </button>
+                    <div id="historyContainer" style="margin-top: 15px;"></div>
+                </div>
+
+                <!-- Voice Controls -->
+                <div class="panel-section">
+                    <h3><i class="fas fa-volume-up"></i> Voice Assistant</h3>
+                    <div class="voice-controls">
+                        <h4>Voice Commands</h4>
+                        <div>
+                            <button class="btn-voice" onclick="toggleVoiceOutput()" title="Toggle Voice Output" id="voiceOutputBtn">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="btn-voice" onclick="speakRecommendations()" title="Speak Current Recommendations">
+                                <i class="fas fa-bullhorn"></i>
+                            </button>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                            Voice Output: <span id="voiceStatus" style="font-weight: bold;">ON</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollModal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-user-plus"></i> Enroll New User</h2>
+            <p>Please look at the camera and enter your name:</p>
+            <input type="text" id="enrollName" placeholder="Enter your name" maxlength="50">
+            <div style="margin-top: 20px;">
+                <button class="btn btn-success" onclick="enrollUser()">
+                    <i class="fas fa-check"></i> Enroll Me
+                </button>
+                <button class="btn btn-danger" onclick="hideEnrollModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isScanning = false;
+        let cameraActive = false;
+        let currentUser = null;
+        let voiceEnabled = true;
+        let speechRecognition = null;
+        let isListening = false;
+        let currentRecommendationText = '';
+
+        // Initialize Speech Recognition
+        function initializeSpeechRecognition() {
+            if ('webkitSpeechRecognition' in window) {
+                speechRecognition = new webkitSpeechRecognition();
+            } else if ('SpeechRecognition' in window) {
+                speechRecognition = new SpeechRecognition();
+            } else {
+                console.warn('Speech recognition not supported in this browser');
+                return false;
+            }
+
+            speechRecognition.continuous = true;  // Enable continuous listening
+            speechRecognition.interimResults = true;  // Enable interim results
+            speechRecognition.lang = 'en-US';
+
+            speechRecognition.onstart = function() {
+                isListening = true;
+                document.getElementById('voiceFeedbackBtn').innerHTML = '<i class="fas fa-stop"></i> Stop Listening';
+                document.getElementById('voiceFeedbackBtn').className = 'btn btn-danger';
+                document.getElementById('voiceFeedbackStatus').style.display = 'block';
+                document.getElementById('voiceStatusText').textContent = 'Listening... Say "good", "bad", "cold", or "hot"';
+            };
+
+            speechRecognition.onresult = function(event) {
+                // Get the latest result
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        const transcript = event.results[i][0].transcript.toLowerCase().trim();
+                        console.log('Voice recognized:', transcript);
+                        processVoiceFeedback(transcript);
+                        // Update status to show what was heard
+                        document.getElementById('voiceStatusText').textContent = `Heard: "${transcript}" - Say another command or click Stop`;
+                    } else {
+                        // Show interim results
+                        const interimTranscript = event.results[i][0].transcript;
+                        document.getElementById('voiceStatusText').textContent = `Listening: "${interimTranscript}..."`;
+                    }
+                }
+            };
+
+            speechRecognition.onend = function() {
+                // Only stop if we're not supposed to be listening
+                if (isListening) {
+                    console.log('Speech recognition ended unexpectedly, restarting...');
+                    try {
+                        speechRecognition.start();
+                    } catch (error) {
+                        console.error('Failed to restart speech recognition:', error);
+                        stopVoiceFeedback();
+                    }
+                }
+            };
+
+            speechRecognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                if (event.error === 'no-speech' || event.error === 'audio-capture') {
+                    // These are temporary errors, try to restart
+                    document.getElementById('voiceStatusText').textContent = 'No speech detected, still listening...';
+                } else {
+                    // More serious error, stop recognition
+                    stopVoiceFeedback();
+                    showNotification('Voice recognition failed. Please try again.', 'error');
+                }
+            };
+
+            return true;
+        }
+
+        // Text-to-Speech functionality
+        function speak(text) {
+            if (!voiceEnabled || !('speechSynthesis' in window)) return;
+
+            // Cancel any current speech
+            speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            utterance.volume = 0.8;
+
+            // Try to use a natural voice
+            const voices = speechSynthesis.getVoices();
+            const preferredVoices = voices.filter(voice => 
+                voice.lang.startsWith('en') && 
+                (voice.name.includes('Natural') || voice.name.includes('Enhanced') || voice.name.includes('Premium'))
+            );
+            
+            if (preferredVoices.length > 0) {
+                utterance.voice = preferredVoices[0];
+            } else if (voices.length > 0) {
+                const englishVoices = voices.filter(voice => voice.lang.startsWith('en'));
+                if (englishVoices.length > 0) {
+                    utterance.voice = englishVoices[0];
+                }
+            }
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // Voice feedback functions
+        function startVoiceFeedback() {
+            if (!speechRecognition) {
+                showNotification('Speech recognition not available in your browser', 'error');
+                return;
+            }
+
+            if (isListening) {
+                stopVoiceFeedback();
+                return;
+            }
+
+            try {
+                speechRecognition.start();
+                speak('I\'m now listening for your feedback. You can say good, bad, cold, or hot multiple times. Click the stop button when you\'re done.');
+            } catch (error) {
+                console.error('Failed to start speech recognition:', error);
+                showNotification('Failed to start voice recognition. Make sure you have a microphone connected.', 'error');
+            }
+        }
+
+        function stopVoiceFeedback() {
+            isListening = false;
+            if (speechRecognition) {
+                try {
+                    speechRecognition.stop();
+                } catch (error) {
+                    console.error('Error stopping speech recognition:', error);
+                }
+            }
+            document.getElementById('voiceFeedbackBtn').innerHTML = '<i class="fas fa-microphone"></i> Voice Feedback';
+            document.getElementById('voiceFeedbackBtn').className = 'btn btn-primary';
+            document.getElementById('voiceFeedbackStatus').style.display = 'none';
+            speak('Voice feedback stopped.');
+        }
+
+        function processVoiceFeedback(transcript) {
+            console.log('Processing voice feedback:', transcript);
+            
+            // Clean up the transcript
+            const words = transcript.toLowerCase().split(' ');
+            let feedback = null;
+            let temperatureFeeling = null;
+
+            // Check for positive feedback
+            if (words.includes('good') || words.includes('great') || words.includes('perfect') || words.includes('fine')) {
+                feedback = 'good';
+            }
+            // Check for negative feedback with temperature
+            else if (words.includes('cold') || words.includes('freezing') || words.includes('chilly')) {
+                feedback = 'bad';
+                temperatureFeeling = 'cold';
+            }
+            else if (words.includes('hot') || words.includes('warm') || words.includes('burning') || words.includes('sweaty')) {
+                feedback = 'bad';
+                temperatureFeeling = 'hot';
+            }
+            // Check for general negative feedback
+            else if (words.includes('bad') || words.includes('wrong') || words.includes('terrible') || words.includes('awful')) {
+                feedback = 'bad';
+                // Ask for clarification
+                speak('I understand the recommendations weren\'t good. Do you feel cold or hot?');
+                setTimeout(() => {
+                    if (speechRecognition && !isListening) {
+                        speechRecognition.start();
+                    }
+                }, 2000);
+                return;
+            }
+
+            if (feedback) {
+                stopVoiceFeedback();
+                submitFeedback(feedback, temperatureFeeling);
+            } else {
+                speak('I didn\'t understand. Please say good, bad, cold, or hot.');
+                document.getElementById('voiceStatusText').textContent = 'Please say: "good", "bad", "cold", or "hot"';
+            }
+        }
+
+        // Toggle voice output
+        function toggleVoiceOutput() {
+            voiceEnabled = !voiceEnabled;
+            const status = document.getElementById('voiceStatus');
+            const btn = document.getElementById('voiceOutputBtn');
+            
+            if (voiceEnabled) {
+                status.textContent = 'ON';
+                status.style.color = '#28a745';
+                btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                speak('Voice output enabled');
+            } else {
+                status.textContent = 'OFF';
+                status.style.color = '#dc3545';
+                btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                speechSynthesis.cancel(); // Stop any current speech
+            }
+        }
+
+        // Speak current recommendations
+        function speakRecommendations() {
+            if (!voiceEnabled) {
+                showNotification('Voice output is disabled', 'info');
+                return;
+            }
+
+            if (currentRecommendationText) {
+                speak(currentRecommendationText);
+            } else {
+                speak('No recommendations available. Please get recommendations first.');
+            }
+        }
+
+        // Utility Functions
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+
+        function updateDetectedItems() {
+            fetch('/get_detected_clothes')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('detectedItems');
+                    if (data.clothes && data.clothes.length > 0) {
+                        container.innerHTML = data.clothes.map(item => 
+                            `<span class="clothing-tag">${item}</span>`
+                        ).join('');
+                    } else {
+                        container.innerHTML = '<p style="color: #666;">No items detected yet</p>';
+                    }
+                });
+        }
+
+        // Camera Controls
+        function startCamera() {
+            fetch('/start_camera', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        document.getElementById('videoFeed').src = '/video_feed?' + new Date().getTime();
+                        document.getElementById('videoFeed').style.display = 'block';
+                        document.getElementById('cameraPlaceholder').style.display = 'none';
+                        document.getElementById('scanBtn').disabled = false;
+                        cameraActive = true;
+                        showNotification('Camera started successfully!', 'success');
+                        speak('Camera started successfully!');
+                    } else {
+                        showNotification(data.message, 'error');
+                        speak('Failed to start camera');
+                    }
+                })
+                .catch(error => {
+                    showNotification('Failed to start camera', 'error');
+                    speak('Failed to start camera');
+                    console.error('Error:', error);
+                });
+        }
+
+        function stopCamera() {
+            fetch('/stop_camera', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('videoFeed').style.display = 'none';
+                    document.getElementById('cameraPlaceholder').style.display = 'block';
+                    document.getElementById('scanBtn').disabled = true;
+                    document.getElementById('scanStatus').className = 'status-indicator status-inactive';
+                    
+                    // Reset recognized user
+                    currentUser = null;
+                    document.getElementById('userInfo').style.display = 'none';
+                    
+                    // Clear recommendations section
+                    document.getElementById('recommendations').innerHTML = '';
+                    
+                    cameraActive = false;
+                    isScanning = false;
+                    showNotification('Camera stopped', 'info');
+                    speak('Camera stopped. User session reset.');
+                });
+        }
+
+        function toggleScanning() {
+            fetch('/toggle_scanning', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    isScanning = data.scanning;
+                    const scanBtn = document.getElementById('scanBtn');
+                    const scanStatus = document.getElementById('scanStatus');
+                    
+                    if (isScanning) {
+                        scanBtn.innerHTML = '<i class="fas fa-stop"></i> Stop Scanning';
+                        scanBtn.className = 'btn btn-danger';
+                        scanStatus.className = 'status-indicator status-active';
+                        showNotification('Started scanning for clothes', 'success');
+                        speak('Started scanning for clothes');
+                        
+                        // Update detected items every 2 seconds while scanning
+                        const updateInterval = setInterval(() => {
+                            if (isScanning) {
+                                updateDetectedItems();
+                            } else {
+                                clearInterval(updateInterval);
+                            }
+                        }, 2000);
+                    } else {
+                        scanBtn.innerHTML = '<i class="fas fa-search"></i> Start Scanning';
+                        scanBtn.className = 'btn btn-warning';
+                        scanStatus.className = 'status-indicator status-inactive';
+                        showNotification('Stopped scanning', 'info');
+                        speak('Stopped scanning');
+                        updateDetectedItems(); // Final update
+                    }
+                });
+        }
+
+        // User Recognition
+        function recognizeFace() {
+            if (!cameraActive) {
+                showNotification('Please start the camera first', 'error');
+                speak('Please start the camera first');
+                return;
+            }
+
+            speak('Recognizing your face...');
+
+            fetch('/recognize_face', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        if (data.user_found) {
+                            currentUser = data.user;
+                            const userNameElement = document.getElementById('userName');
+                            const userDetailsElement = document.getElementById('userDetails');
+                            const userInfoElement = document.getElementById('userInfo');
+                            
+                            if (userNameElement) {
+                                userNameElement.textContent = `Welcome back, ${data.user.name}!`;
+                            }
+                            if (userDetailsElement) {
+                                userDetailsElement.textContent = `User ID: ${data.user.user_id}`;
+                            }
+                            if (userInfoElement) {
+                                userInfoElement.style.display = 'block';
+                            }
+                            
+                            showNotification(data.message, 'success');
+                            speak(`Welcome back, ${data.user.name}!`);
+                        } else {
+                            currentUser = null;
+                            const userInfoElement = document.getElementById('userInfo');
+                            if (userInfoElement) {
+                                userInfoElement.style.display = 'none';
+                            }
+                            showNotification(data.message, 'info');
+                            speak('No matching user found. You can enroll as a new user if you like.');
+                        }
+                    } else {
+                        showNotification(data.message, 'error');
+                        speak('Face recognition failed');
+                    }
+                })
+                .catch(error => {
+                    showNotification('Face recognition failed', 'error');
+                    speak('Face recognition failed');
+                    console.error('Error:', error);
+                });
+        }
+
+        function showEnrollModal() {
+            if (!cameraActive) {
+                showNotification('Please start the camera first', 'error');
+                return;
+            }
+            document.getElementById('enrollModal').style.display = 'block';
+        }
+
+        function hideEnrollModal() {
+            document.getElementById('enrollModal').style.display = 'none';
+            document.getElementById('enrollName').value = '';
+        }
+
+        function enrollUser() {
+            const name = document.getElementById('enrollName').value.trim();
+            if (!name) {
+                showNotification('Please enter your name', 'error');
+                speak('Please enter your name');
+                return;
+            }
+
+            speak('Enrolling your face... Please look at the camera.');
+
+            fetch('/enroll_user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    currentUser = data.user;
+                    const userNameElement = document.getElementById('userName');
+                    const userDetailsElement = document.getElementById('userDetails');
+                    const userInfoElement = document.getElementById('userInfo');
+                    
+                    if (userNameElement) {
+                        userNameElement.textContent = `Welcome, ${data.user.name}!`;
+                    }
+                    if (userDetailsElement) {
+                        userDetailsElement.textContent = `User ID: ${data.user.user_id}`;
+                    }
+                    if (userInfoElement) {
+                        userInfoElement.style.display = 'block';
+                    }
+                    
+                    hideEnrollModal();
+                    showNotification(data.message, 'success');
+                    speak(`Welcome ${name}! Nice to meet you. I've enrolled your face and I'm ready to help you with fashion recommendations.`);
+                } else {
+                    showNotification(data.message, 'error');
+                    
+                    // Check if the error is about duplicate name
+                    if (data.message.toLowerCase().includes('already exists')) {
+                        speak(`Sorry, the name ${name} is already registered in the system. Please use the Recognize Me button instead, or choose a different name.`);
+                    } else {
+                        speak('Sorry, I couldn\'t detect your face clearly. Please make sure you\'re looking at the camera.');
+                    }
+                }
+            })
+            .catch(error => {
+                showNotification('Enrollment failed', 'error');
+                speak('Enrollment failed. Please try again.');
+                console.error('Error:', error);
+            });
+        }
+
+        // Recommendations
+        function getRecommendations() {
+            speak('Getting your smart recommendations...');
+            
+            fetch('/get_recommendations', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Display weather info
+                        const weatherInfo = document.getElementById('weatherInfo');
+                        weatherInfo.innerHTML = `
+                            <h4><i class="fas fa-cloud-sun"></i> Current Weather in ${data.weather.city}</h4>
+                            <p>🌡️ Temperature: ${data.weather.temperature}°C</p>
+                            <p>💧 Humidity: ${data.weather.humidity}%</p>
+                            <p>💨 Wind Speed: ${data.weather.wind_speed} m/s</p>
+                        `;
+                        weatherInfo.style.display = 'block';
+
+                        // Display user info
+                        const userSection = document.getElementById('userInfo');
+                        if (data.user.name !== 'Guest') {
+                            const recommendationSource = data.user.recommendation_source || 'rules';
+                            const sourceIcon = recommendationSource === 'ai' ? '🤖' : '📋';
+                            const sourceText = recommendationSource === 'ai' ? 'AI Neural Network' : 'Rule-based Learning';
+                            
+                            userSection.innerHTML = `
+                                <h4>👤 ${data.user.name}</h4>
+                                <p>Temperature Adjustment: ${data.user.delta > 0 ? '+' : ''}${data.user.delta}°C</p>
+                                <p>Confidence: ${Math.round(data.user.confidence * 100)}%</p>
+                                <p>${sourceIcon} Recommendation Engine: ${sourceText}</p>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">${data.user.explanation}</p>
+                            `;
+                            userSection.style.display = 'block';
+                        }
+
+                        // Display recommendations
+                        const recommendationsContainer = document.getElementById('recommendations');
+                        recommendationsContainer.innerHTML = data.recommendations.map(rec => `
+                            <div class="recommendation-item ${rec.status}">
+                                <strong>${rec.item}</strong>: ${rec.message}
+                            </div>
+                        `).join('');
+
+                        // Store recommendations for voice output
+                        const userName = data.user.name !== 'Guest' ? data.user.name : '';
+                        const recommendationSource = data.user.recommendation_source || 'rules';
+                        let voiceText = ``;
+                        
+                        if (userName) {
+                            voiceText += `Hello ${userName}! `;
+                        }
+                        
+                        voiceText += `The current temperature in ${data.weather.city} is ${Math.round(data.weather.temperature)} degrees celsius. `;
+                        
+                        // Add AI/Rules indication
+                        if (recommendationSource === 'ai') {
+                            const confidence = Math.round(data.user.confidence * 100);
+                            if (confidence > 80) {
+                                voiceText += `I'm using my AI neural network to analyze your preferences with ${confidence}% confidence. `;
+                            } else {
+                                voiceText += `I'm using my AI neural network to analyze your style preferences. `;
+                            }
+                        } else {
+                            const confidence = Math.round(data.user.confidence * 100);
+                            if (confidence > 70) {
+                                voiceText += `Based on your previous feedback, I've learned your preferences with ${confidence}% confidence. `;
+                            } else if (confidence > 30) {
+                                voiceText += `I'm still learning your personal style preferences. `;
+                            } else {
+                                voiceText += `I'm using general weather guidelines while learning your preferences. `;
+                            }
+                        }
+                        
+                        // Add recommendation details
+                        let appropriateItems = [];
+                        let issues = [];
+                        
+                        data.recommendations.forEach(rec => {
+                            if (rec.status === 'appropriate') {
+                                appropriateItems.push(rec.item);
+                            } else if (rec.status === 'too_warm') {
+                                issues.push(`Your ${rec.item} may be too warm for this temperature.`);
+                            } else if (rec.status === 'too_light') {
+                                issues.push(`Your ${rec.item} might be too light, consider dressing warmer.`);
+                            }
+                        });
+
+                        if (appropriateItems.length > 0) {
+                            voiceText += `Your ${appropriateItems.join(' and ')} ${appropriateItems.length === 1 ? 'is' : 'are'} perfect for today's weather. `;
+                        }
+
+                        if (issues.length > 0) {
+                            voiceText += issues.join(' ');
+                        }
+
+                        if (appropriateItems.length === data.recommendations.length) {
+                            voiceText += ' Your outfit looks great for today!';
+                        }
+
+                        currentRecommendationText = voiceText;
+
+                        // Show feedback section
+                        document.getElementById('feedbackSection').style.display = 'block';
+
+                        showNotification('Recommendations generated!', 'success');
+                        speak(currentRecommendationText);
+                    } else {
+                        showNotification(data.message, 'error');
+                        speak(data.message);
+                    }
+                })
+                .catch(error => {
+                    showNotification('Failed to get recommendations', 'error');
+                    speak('Failed to get recommendations');
+                    console.error('Error:', error);
+                });
+        }
+
+        // Feedback
+        function showFeedbackDetail() {
+            document.getElementById('feedbackDetail').classList.add('show');
+        }
+
+        function submitFeedback(feedback, temperatureFeeling = null) {
+            const data = { feedback: feedback };
+            if (temperatureFeeling) {
+                data.temperature_feeling = temperatureFeeling;
+            }
+
+            // Voice confirmation
+            let confirmationText = '';
+            if (feedback === 'good') {
+                confirmationText = 'Thank you! I\'m glad the recommendations felt right.';
+            } else if (feedback === 'bad' && temperatureFeeling === 'cold') {
+                confirmationText = 'Thank you for the feedback. I\'ll remember you prefer warmer clothing.';
+            } else if (feedback === 'bad' && temperatureFeeling === 'hot') {
+                confirmationText = 'Thank you for the feedback. I\'ll remember you prefer cooler clothing.';
+            } else {
+                confirmationText = 'Thank you for your feedback!';
+            }
+
+            fetch('/submit_feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    showNotification(data.message, 'success');
+                    speak(confirmationText);
+                    document.getElementById('feedbackSection').style.display = 'none';
+                    document.getElementById('feedbackDetail').classList.remove('show');
+                    
+                    if (data.delta_change) {
+                        const deltaText = `Your preferences have been updated by ${data.delta_change > 0 ? 'plus' : 'minus'} ${Math.abs(data.delta_change)} degrees.`;
+                        showNotification(`Preference updated by ${data.delta_change > 0 ? '+' : ''}${data.delta_change}°C`, 'info');
+                        speak(deltaText);
+                    }
+                } else {
+                    showNotification(data.message, 'error');
+                    speak('Sorry, there was an error processing your feedback.');
+                }
+            })
+            .catch(error => {
+                showNotification('Failed to submit feedback', 'error');
+                speak('Sorry, there was an error processing your feedback.');
+                console.error('Error:', error);
+            });
+        }
+
+        // History
+        function loadHistory() {
+            fetch('/user_history')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('historyContainer');
+                    if (data.status === 'success') {
+                        if (data.history.length > 0) {
+                            container.innerHTML = `
+                                <h5>Recent Sessions (${data.total_sessions} total)</h5>
+                                ${data.history.map(session => `
+                                    <div class="history-item">
+                                        <div class="timestamp">${new Date(session.timestamp).toLocaleString()}</div>
+                                        <div class="clothes">
+                                            ${session.clothes_detected.map(item => `<span class="clothing-tag">${item}</span>`).join(' ')}
+                                        </div>
+                                        <div>📍 ${session.city} • 🌡️ ${session.temperature}°C • 💬 ${session.feedback || 'No feedback'}</div>
+                                    </div>
+                                `).join('')}
+                            `;
+                        } else {
+                            container.innerHTML = '<p>No history available</p>';
+                        }
+                    } else {
+                        container.innerHTML = `<p style="color: red;">${data.message}</p>`;
+                    }
+                })
+                .catch(error => {
+                    showNotification('Failed to load history', 'error');
+                    console.error('Error:', error);
+                });
+        }
+
+        function resetSession() {
+            if (confirm('Are you sure you want to reset the current session?')) {
+                fetch('/reset_session', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Reset UI
+                            currentUser = null;
+                            document.getElementById('userInfo').style.display = 'none';
+                            document.getElementById('weatherInfo').style.display = 'none';
+                            document.getElementById('recommendations').innerHTML = '';
+                            document.getElementById('feedbackSection').style.display = 'none';
+                            document.getElementById('historyContainer').innerHTML = '';
+                            updateDetectedItems();
+                            
+                            showNotification('Session reset successfully', 'success');
+                        }
+                    })
+                    .catch(error => {
+                        showNotification('Failed to reset session', 'error');
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial status
+            document.getElementById('scanStatus').className = 'status-indicator status-inactive';
+            
+            // Initialize speech recognition
+            initializeSpeechRecognition();
+            
+            // Initialize speech synthesis voices (Chrome needs this)
+            if ('speechSynthesis' in window) {
+                speechSynthesis.getVoices(); // This populates the voices list
+            }
+            
+            // Welcome message
+            speak('Welcome to Mirror Mirror AI! Your smart fashion assistant is ready.');
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                const modal = document.getElementById('enrollModal');
+                if (event.target === modal) {
+                    hideEnrollModal();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
