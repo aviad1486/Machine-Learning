@@ -2,6 +2,30 @@
 
 An intelligent AI system for clothing recommendations based on facial recognition, clothing detection, weather data, and user feedback learning. Now featuring both **terminal interface** and **modern web UI** for enhanced user experience.
 
+## 🚀 Live Demo & Links
+
+**[🌐 View Live Website](https://aviad1486.github.io/Machine-Learning/)**
+
+### 📋 Project Resources
+- **🎬 [Demo Presentation](https://www.canva.com/design/DAGzsCh04XU/pAElWKISa-OeqFAqpbcSkQ/edit?utm_content=DAGzsCh04XU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **📹 [Marketing Video](https://www.canva.com/design/DAGzsPHfhyU/LOvqWDIlEEccAweBjKIE0w/edit?utm_content=DAGzsPHfhyU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **📊 [Explanatory Presentation](https://www.canva.com/design/DAGzV3dyELE/FtfjOwmDhIZZoSNEObPtIQ/edit?utm_content=DAGzV3dyELE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **📄 [Summary Document](https://docs.google.com/document/d/1W4IK6ipGdWQxoeqbFvuVZluwZ9Uwtt_v5Hicuhv_gq4/edit?usp=sharing)**
+- **💻 [Source Code](https://github.com/iLihiS/git-dinamic-page)**
+
+## 👥 Development Team
+
+**Developed by:**
+- **Lihi Saar** 
+- **Aviad Zer**
+- **Yael Zini**
+
+**Mentored by:**
+- **Eyal Zinger**
+- **Lior Noy**
+
+**Institution:** Ono Academic College
+
 ## 🌟 Key Features
 
 ### 🎯 Smart Recognition & Learning
@@ -216,3 +240,28 @@ Machine Learning/
 - **"cold"** - I'm cold
 - **"hot"** - I'm hot
 - **"exit"** - Exit program
+
+## 🎯 Project Goals & Vision
+
+Mirror Mirror AI demonstrates how artificial intelligence can be meaningfully integrated into daily life, turning a simple mirror into an evolving AI companion that blends practicality, creativity, and style. The project bridges the gap between fashion, accessibility, and technology.
+
+### Key Objectives:
+- **Accessibility**: Making fashion advice accessible to people with visual impairments
+- **Personalization**: Learning individual preferences and adapting over time  
+- **Real-time Intelligence**: Providing instant, contextual outfit recommendations
+- **User Experience**: Creating an intuitive, voice-enabled interface
+
+## 📊 Results & Achievements
+
+Our findings show that the system successfully:
+- **High Accuracy Detection**: Identifies garments in real-time with high precision using custom YOLO model
+- **Robust User Recognition**: Maintains personalized profiles with DeepFace facial recognition
+- **Adaptive Learning**: Provides increasingly accurate outfit suggestions with each user interaction
+- **Accessibility Impact**: Offers significant value to everyday users as well as people with visual impairments
+- **Weather Integration**: Delivers context-aware recommendations based on real-time weather data
+
+## 🏆 About This Project
+
+This project represents the culmination of our work in artificial intelligence and computer vision, showcasing how technology can enhance everyday experiences while maintaining accessibility and user-friendliness.
+
+**© 2025 Lihi Saar, Aviad Zer, Yael Zini. All rights reserved.**
