@@ -266,6 +266,50 @@ def enroll_user():
     except Exception as e:
         return jsonify({'status': 'error', 'message': f'Enrollment error: {str(e)}'})
 
+@app.route('/check_ai_confidence', methods=['POST'])
+def check_ai_confidence():
+    """Check if AI has enough confidence to make recommendations"""
+    global detected_clothes, current_user
+    
+    unique_clothes = set(detected_clothes)
+    
+    if not unique_clothes:
+        return jsonify({'status': 'error', 'message': 'No clothing items detected. Please scan first.'})
+    
+    try:
+        # Get weather data
+        city, current_temp, humidity, wind_speed = get_city_and_temperature(OPENWEATHER_API_KEY)
+        
+        if city is None or current_temp is None:
+            return jsonify({'status': 'error', 'message': 'Could not retrieve weather data'})
+        
+        # Check AI confidence
+        ai_confidence = 0.0
+        if simple_ai_engine.is_available():
+            current_conditions = {
+                'temperature': current_temp,
+                'humidity': humidity if humidity is not None else 50,
+                'wind_speed': wind_speed if wind_speed is not None else 0
+            }
+            
+            ai_delta, ai_explanation, ai_confidence = get_simple_ai_recommendation(
+                current_user, current_conditions, list(unique_clothes)
+            )
+        
+        # Determine recommendation source
+        use_ai = ai_delta is not None and ai_confidence > 0.7
+        
+        return jsonify({
+            'status': 'success',
+            'use_ai': use_ai,
+            'ai_confidence': ai_confidence,
+            'button_text': 'Get AI Recommendations' if use_ai else 'Get Rule-Based Recommendations',
+            'button_icon': 'fas fa-robot' if use_ai else 'fas fa-list-ul'
+        })
+        
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': f'Error checking AI confidence: {str(e)}'})
+
 @app.route('/get_recommendations', methods=['POST'])
 def get_recommendations():
     """Get clothing recommendations based on detected items and weather"""
@@ -381,7 +425,7 @@ def submit_feedback():
     
     try:
         # Process feedback
-        if feedback == 'bad' and temperature_feeling:
+        if feedback in ['bad', 'bed'] and temperature_feeling:
             delta_change = +2 if temperature_feeling == 'cold' else -2
             
             if current_user:

@@ -505,9 +505,9 @@
 
                 <!-- Recommendations -->
                 <div class="panel-section">
-                    <h3><i class="fas fa-brain"></i> AI Recommendations</h3>
-                    <button class="btn btn-primary" onclick="getRecommendations()">
-                        <i class="fas fa-magic"></i> Get Smart Recommendations
+                    <h3><i class="fas fa-brain"></i>Recommendations</h3>
+                    <button class="btn btn-primary" id="recommendationBtn" onclick="getRecommendations()" style="display: none;">
+                        <i class="fas fa-magic" id="recommendationIcon"></i> <span id="recommendationText">Get Smart Recommendations</span>
                     </button>
                     
                     <div id="weatherInfo" style="display: none;"></div>
@@ -762,7 +762,7 @@
                 temperatureFeeling = 'hot';
             }
             // Check for general negative feedback
-            else if (words.includes('bad') || words.includes('wrong') || words.includes('terrible') || words.includes('awful')) {
+            else if (words.includes('bad') || words.includes('bed') || words.includes('wrong') || words.includes('terrible') || words.includes('awful')) {
                 feedback = 'bad';
                 // Ask for clarification
                 speak('I understand the recommendations weren\'t good. Do you feel cold or hot?');
@@ -835,12 +835,19 @@
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById('detectedItems');
+                    const btn = document.getElementById('recommendationBtn');
+                    
                     if (data.clothes && data.clothes.length > 0) {
                         container.innerHTML = data.clothes.map(item => 
                             `<span class="clothing-tag">${item}</span>`
                         ).join('');
+                        
+                        // Update recommendation button when items are detected
+                        updateRecommendationButton();
                     } else {
                         container.innerHTML = '<p style="color: #666;">No items detected yet</p>';
+                        // Hide button when no items detected
+                        btn.style.display = 'none';
                     }
                 });
         }
@@ -1045,6 +1052,44 @@
                 speak('Enrollment failed. Please try again.');
                 console.error('Error:', error);
             });
+        }
+
+        // Update recommendation button based on AI confidence
+        function updateRecommendationButton() {
+            fetch('/check_ai_confidence', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    const btn = document.getElementById('recommendationBtn');
+                    const icon = document.getElementById('recommendationIcon');
+                    const text = document.getElementById('recommendationText');
+                    
+                    if (data.status === 'success') {
+                        // Show the button and update its content
+                        btn.style.display = 'inline-block';
+                        
+                        if (icon && text) {
+                            icon.className = data.button_icon;
+                            text.textContent = data.button_text;
+                            
+                            // Update button color based on AI vs Rules
+                            if (data.use_ai) {
+                                btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                                btn.title = `🤖 AI Confidence: ${(data.ai_confidence * 100).toFixed(1)}% - Ready for smart recommendations!`;
+                            } else {
+                                btn.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+                                btn.title = `📋 Using rule-based recommendations (AI confidence: ${(data.ai_confidence * 100).toFixed(1)}%)`;
+                            }
+                        }
+                    } else {
+                        // Hide the button if no clothing detected or error
+                        btn.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating recommendation button:', error);
+                    // Hide button on error
+                    document.getElementById('recommendationBtn').style.display = 'none';
+                });
         }
 
         // Recommendations
@@ -1264,6 +1309,7 @@
                             document.getElementById('recommendations').innerHTML = '';
                             document.getElementById('feedbackSection').style.display = 'none';
                             document.getElementById('historyContainer').innerHTML = '';
+                            document.getElementById('recommendationBtn').style.display = 'none'; // Hide recommendation button
                             updateDetectedItems();
                             
                             showNotification('Session reset successfully', 'success');
