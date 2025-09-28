@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirror Mirror AI - Smart Fashion Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -13,8 +14,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #01feee 0%, #a566e5 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -32,13 +33,17 @@
         }
 
         .header h1 {
-            font-size: 3rem;
+            font-family: Tahoma, sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 0.05em;
+            animation: letterSpacingPulse 4s ease-in-out infinite;
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             opacity: 0.9;
         }
 
@@ -52,7 +57,7 @@
         .camera-section {
             background: white;
             border-radius: 20px;
-            padding: 20px;
+            padding: 70px 20px 20px 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
@@ -65,6 +70,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
 
         #videoFeed {
@@ -77,6 +83,11 @@
             color: #666;
             font-size: 1.2rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
         .camera-controls {
@@ -84,6 +95,8 @@
             gap: 15px;
             margin-top: 20px;
             justify-content: center;
+            align-items: center;
+            min-height: 80px;
         }
 
         .btn {
@@ -100,7 +113,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #01feee, #a566e5);
             color: white;
         }
 
@@ -110,7 +123,7 @@
         }
 
         .btn-warning {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
+            background: linear-gradient(135deg, #56ab2f, #77bd95);
             color: white;
         }
 
@@ -139,8 +152,8 @@
         }
 
         .panel-section {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
             border-bottom: 1px solid #eee;
         }
 
@@ -149,9 +162,9 @@
         }
 
         .panel-section h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            color: #a566e5;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -182,7 +195,7 @@
         }
 
         .clothing-tag {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #01feee, #a566e5);
             color: white;
             padding: 6px 12px;
             border-radius: 20px;
@@ -193,9 +206,9 @@
         .user-info {
             background: linear-gradient(135deg, #56ab2f, #a8e6cf);
             color: white;
-            padding: 15px;
+            padding: 10px;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .user-info h4 {
@@ -208,7 +221,7 @@
 
         .recommendation-item {
             background: #f8f9fa;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #a566e5;
             padding: 12px;
             margin-bottom: 10px;
             border-radius: 5px;
@@ -302,6 +315,18 @@
             to { transform: rotate(360deg); }
         }
 
+        @keyframes letterSpacingPulse {
+            0% {
+                letter-spacing: 0.05em;
+            }
+            50% {
+                letter-spacing: 0.15em;
+            }
+            100% {
+                letter-spacing: 0.05em;
+            }
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -372,18 +397,18 @@
         .voice-controls {
             background: #f8f9fa;
             border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
+            padding: 10px;
+            margin-top: 10px;
             text-align: center;
         }
 
         .voice-controls h4 {
-            margin-bottom: 15px;
-            color: #667eea;
+            margin-bottom: 8px;
+            color: #a566e5;
         }
 
         .btn-voice {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #01feee, #a566e5);
             color: white;
             border: none;
             border-radius: 50px;
@@ -397,7 +422,7 @@
 
         .btn-voice:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 20px rgba(165, 102, 229, 0.4);
         }
 
         .btn-voice.recording {
@@ -424,8 +449,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-magic"></i> Mirror Mirror AI</h1>
-            <p>Your Smart Fashion Assistant - Powered by Computer Vision & Weather Intelligence</p>
+            <h1> Mirror Mirror AI</h1>
+            <p>Let's answer the question: Who's the most comfit of them all?</p>
         </div>
 
         <div class="main-content">

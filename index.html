@@ -309,8 +309,8 @@
                         <div class="citation-box">
                             <div class="citation-content">
                                 <code>
-                                    git clone https://github.com/iLihiS/git-dinamic-page.git<br>
-                                    cd git-dinamic-page
+                                    git clone https://github.com/aviad1486/Machine-Learning.git<br>
+                                    cd Machine-Learning
                                         
                                 </code>
                             </div>
@@ -321,10 +321,12 @@
                         </div>
                     </div>
                     <div class="installation-step">
-                        <p class="citation-text"><span class="citation-step-text">Step 2:</span> Install dependencies</p>
+                        <p class="citation-text"><span class="citation-step-text">Step 2:</span> Create virtual environment and install dependencies</p>
                         <div class="citation-box">
                             <div class="citation-content">
                                 <code>
+                                    python -m venv mirror_ai_env<br>
+                                    source mirror_ai_env/bin/activate  # On Windows: mirror_ai_env\Scripts\activate<br>
                                     pip install -r requirements.txt
                                 </code>
                             </div>
@@ -335,11 +337,18 @@
                         </div>
                     </div>
                     <div class="installation-step">
-                        <p class="citation-text"><span class="citation-step-text">Step 3:</span> Run the main script</p>
+                        <p class="citation-text"><span class="citation-step-text">Step 3:</span> Setup API key and run the application</p>
                         <div class="citation-box">
                             <div class="citation-content">
                                 <code>
-                                    python main.py
+                                    # Create .env file with your OpenWeatherMap API key<br>
+                                    echo "OPENWEATHER_API_KEY=your_api_key_here" > .env<br>
+                                    <br>
+                                    # Run the web interface<br>
+                                    python app.py<br>
+                                    <br>
+                                    # Or run the terminal interface<br>
+                                    python RecommendationSystemMirror.py
                                 </code>
                             </div>
                             <button class="copy-btn" onclick="copyToClipboard(this, 'step3')">
