@@ -34,6 +34,34 @@
             color: white;
         }
 
+        .header-logo {
+            position: absolute;
+            top: 0px;
+            left: -2px;
+            width: 20vw;
+            height: 20vw;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+            animation: floatingLogo 4s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        @keyframes floatingLogo {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
         .header h1 {
             font-family: Tahoma, sans-serif;
             font-size: 4rem;
@@ -432,6 +460,13 @@
             animation: pulse 1s infinite;
         }
 
+        @media (max-width: 1100px) {
+            .header-logo {
+                width: 15vw;
+                height: 15vw;
+            }
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -445,13 +480,19 @@
             .camera-controls {
                 flex-wrap: wrap;
             }
+            .header-logo {
+                width: 15vh;
+                height: 15vh;
+                top: 100px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="../images/logo.png" alt="Mirror Mirror AI Logo" class="header-logo">
         <div class="header">
-            <h1> Mirror Mirror AI</h1>
+            <h1>Mirror Mirror AI</h1>
             <p>Let's answer the question: Who's the most comfit of them all?</p>
         </div>
 
