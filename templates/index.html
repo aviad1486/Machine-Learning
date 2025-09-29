@@ -465,14 +465,11 @@
                 </div>
                 
                 <div class="camera-controls">
-                    <button class="btn btn-primary" onclick="startCamera()">
+                    <button class="btn btn-primary" onclick="toggleCamera()" id="cameraBtn">
                         <i class="fas fa-video"></i> Start Camera
                     </button>
                     <button class="btn btn-warning" onclick="toggleScanning()" id="scanBtn" disabled>
                         <i class="fas fa-search"></i> Start Scanning
-                    </button>
-                    <button class="btn btn-danger" onclick="stopCamera()">
-                        <i class="fas fa-stop"></i> Stop Camera
                     </button>
                 </div>
             </div>
@@ -598,7 +595,7 @@
 
     <script>
         let isScanning = false;
-        let cameraActive = false;
+        let isCameraActive = false;
         let currentUser = null;
         let voiceEnabled = true;
         let speechRecognition = null;
@@ -853,6 +850,14 @@
         }
 
         // Camera Controls
+        function toggleCamera() {
+            if (isCameraActive) {
+                stopCamera();
+            } else {
+                startCamera();
+            }
+        }
+
         function startCamera() {
             fetch('/start_camera', { method: 'POST' })
                 .then(response => response.json())
@@ -862,7 +867,13 @@
                         document.getElementById('videoFeed').style.display = 'block';
                         document.getElementById('cameraPlaceholder').style.display = 'none';
                         document.getElementById('scanBtn').disabled = false;
-                        cameraActive = true;
+                        isCameraActive = true;
+                        
+                        // Update camera button
+                        const cameraBtn = document.getElementById('cameraBtn');
+                        cameraBtn.innerHTML = '<i class="fas fa-stop"></i> Stop Camera';
+                        cameraBtn.className = 'btn btn-danger';
+                        
                         showNotification('Camera started successfully!', 'success');
                         speak('Camera started successfully!');
                     } else {
@@ -893,8 +904,14 @@
                     // Clear recommendations section
                     document.getElementById('recommendations').innerHTML = '';
                     
-                    cameraActive = false;
+                    isCameraActive = false;
                     isScanning = false;
+                    
+                    // Update camera button
+                    const cameraBtn = document.getElementById('cameraBtn');
+                    cameraBtn.innerHTML = '<i class="fas fa-video"></i> Start Camera';
+                    cameraBtn.className = 'btn btn-primary';
+                    
                     showNotification('Camera stopped', 'info');
                     speak('Camera stopped. User session reset.');
                 });
@@ -936,7 +953,7 @@
 
         // User Recognition
         function recognizeFace() {
-            if (!cameraActive) {
+            if (!isCameraActive) {
                 showNotification('Please start the camera first', 'error');
                 speak('Please start the camera first');
                 return;
@@ -988,7 +1005,7 @@
         }
 
         function showEnrollModal() {
-            if (!cameraActive) {
+            if (!isCameraActive) {
                 showNotification('Please start the camera first', 'error');
                 return;
             }
