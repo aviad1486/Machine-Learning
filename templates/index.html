@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirror Mirror AI - Smart Fashion Assistant</title>
-    <link rel="icon" type="image/png" href="../images/logo.png">
-    <link rel="apple-touch-icon" href="../images/logo.png">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -160,6 +160,10 @@
         .btn-danger {
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
+        }
+
+        .feedback-btn {
+            padding: 6px 12px;
         }
 
         .btn:hover {
@@ -490,7 +494,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="../images/logo.png" alt="Mirror Mirror AI Logo" class="header-logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mirror Mirror AI Logo" class="header-logo">
         <div class="header">
             <h1>Mirror Mirror AI</h1>
             <p>Let's answer the question: Who's the most comfit of them all?</p>
@@ -556,13 +560,13 @@
                     <div id="feedbackSection" class="feedback-section" style="display: none;">
                         <h4>How do you feel about these recommendations?</h4>
                         <div class="feedback-buttons">
-                            <button class="btn btn-success" onclick="submitFeedback('good')">
+                            <button class="btn btn-success feedback-btn" onclick="submitFeedback('good')">
                                 <i class="fas fa-thumbs-up"></i> Good
                             </button>
-                            <button class="btn btn-warning" onclick="showFeedbackDetail()">
+                            <button class="btn btn-warning feedback-btn" onclick="showFeedbackDetail()">
                                 <i class="fas fa-thumbs-down"></i> Not Good
                             </button>
-                            <button class="btn btn-primary" onclick="startVoiceFeedback()" id="voiceFeedbackBtn">
+                            <button class="btn btn-primary feedback-btn" onclick="startVoiceFeedback()" id="voiceFeedbackBtn">
                                 <i class="fas fa-microphone"></i> Voice Feedback
                             </button>
                         </div>
@@ -588,10 +592,10 @@
                 <!-- Session History -->
                 <div class="panel-section">
                     <h3><i class="fas fa-history"></i> Session History</h3>
-                    <button class="btn btn-primary" onclick="loadHistory()">
+                    <button class="btn btn-primary feedback-btn" onclick="loadHistory()">
                         <i class="fas fa-chart-line"></i> View History
                     </button>
-                    <button class="btn btn-warning" onclick="resetSession()">
+                    <button class="btn btn-warning feedback-btn" onclick="resetSession()">
                         <i class="fas fa-refresh"></i> Reset Session
                     </button>
                     <div id="historyContainer" style="margin-top: 15px;"></div>
