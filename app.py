@@ -42,7 +42,7 @@ class Camera:
     def start(self):
         if self.cap is None:
             self.cap = cv2.VideoCapture(self.source, cv2.CAP_DSHOW)
-            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
             self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         self.is_active = True
         return self.cap.isOpened()

@@ -93,7 +93,7 @@
 
         .camera-container {
             position: relative;
-            background: #000;
+            background: #ffffff;
             border-radius: 15px;
             overflow: hidden;
             height: 480px;
@@ -148,12 +148,12 @@
         }
 
         .btn-success {
-            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+            background: linear-gradient(135deg, #56ab2f, #31c991);
             color: white;
         }
 
         .btn-warning {
-            background: linear-gradient(135deg, #56ab2f, #77bd95);
+            background: linear-gradient(135deg, #dd9308, #eed811);
             color: white;
         }
 
@@ -164,6 +164,10 @@
 
         .feedback-btn {
             padding: 6px 12px;
+        }
+
+        .history-btn {
+            padding: 12px 20px;
         }
 
         .btn:hover {
@@ -515,7 +519,7 @@
                     <button class="btn btn-primary" onclick="toggleCamera()" id="cameraBtn">
                         <i class="fas fa-video"></i> Start Camera
                     </button>
-                    <button class="btn btn-warning" onclick="toggleScanning()" id="scanBtn" disabled>
+                    <button class="btn btn-success" onclick="toggleScanning()" id="scanBtn" disabled>
                         <i class="fas fa-search"></i> Start Scanning
                     </button>
                 </div>
@@ -563,7 +567,7 @@
                             <button class="btn btn-success feedback-btn" onclick="submitFeedback('good')">
                                 <i class="fas fa-thumbs-up"></i> Good
                             </button>
-                            <button class="btn btn-warning feedback-btn" onclick="showFeedbackDetail()">
+                            <button class="btn btn-danger feedback-btn" onclick="showFeedbackDetail()">
                                 <i class="fas fa-thumbs-down"></i> Not Good
                             </button>
                             <button class="btn btn-primary feedback-btn" onclick="startVoiceFeedback()" id="voiceFeedbackBtn">
@@ -592,10 +596,10 @@
                 <!-- Session History -->
                 <div class="panel-section">
                     <h3><i class="fas fa-history"></i> Session History</h3>
-                    <button class="btn btn-primary feedback-btn" onclick="loadHistory()">
+                    <button class="btn btn-primary history-btn" onclick="loadHistory()">
                         <i class="fas fa-chart-line"></i> View History
                     </button>
-                    <button class="btn btn-warning feedback-btn" onclick="resetSession()">
+                    <button class="btn btn-warning history-btn" onclick="resetSession()">
                         <i class="fas fa-refresh"></i> Reset Session
                     </button>
                     <div id="historyContainer" style="margin-top: 15px;"></div>
