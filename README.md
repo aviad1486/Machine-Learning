@@ -11,12 +11,7 @@ An intelligent AI system for clothing recommendations based on facial recognitio
 - **📹 [Marketing Video](https://www.canva.com/design/DAGzsPHfhyU/LOvqWDIlEEccAweBjKIE0w/edit?utm_content=DAGzsPHfhyU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
 - **📊 [Explanatory Presentation](https://www.canva.com/design/DAGzV3dyELE/FtfjOwmDhIZZoSNEObPtIQ/edit?utm_content=DAGzV3dyELE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
 - **📄 [Summary Document](https://docs.google.com/document/d/1W4IK6ipGdWQxoeqbFvuVZluwZ9Uwtt_v5Hicuhv_gq4/edit?usp=sharing)**
-- **💻 [Source Code](https://github.com/iLihiS/git-dinamic-page)**
-- **🧠 [Case 1: Known User - Rich History](https://www.canva.com/design/DAG3AwaCuVs/Ptnqr7yjtcVloNDwJ3b2HQ/edit?utm_content=DAG3AwaCuVs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
-- **🧩 [Case 2: Known User - Poor History](https://www.canva.com/design/DAG3BIos_TA/y52mZKjtn8yaTaY0CGw29Q/edit?utm_content=DAG3BIos_TA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
-- **🆕 [Case 3: Enrolling New User](https://www.canva.com/design/DAG3BE811Es/V2k0sgRLA6qEF8xOr65ElA/edit?utm_content=DAG3BE811Es&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
-- **👕 [Case 4: Detecting Clothes: No Face, Bad Feedback](https://www.canva.com/design/DAG3BPACsMg/ON_GilJm8zO2o36RfENWXw/edit?utm_content=DAG3BPACsMg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
-- **🔍 [Case 5: Edge Cases](https://www.canva.com/design/DAG3BOcycZE/GVF-qzriea2Aqgh-k76crw/edit?utm_content=DAG3BOcycZE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
+- **💻 [Source Code](https://github.com/aviad1486/Machine-Learning)**
 
 
 ## 👥 Development Team

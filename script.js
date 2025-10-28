@@ -246,7 +246,7 @@ function copyToClipboard(button, step) {
     // Get the appropriate code based on the step
     switch(step) {
         case 'step1':
-            codeText = `git clone https://github.com/iLihiS/git-dinamic-page.git
+            codeText = `git clone https://github.com/aviad1486/Machine-Learning
 cd git-dinamic-page`;
             break;
         case 'step2':
@@ -684,4 +684,12 @@ class RowAnimationManager {
 document.addEventListener('DOMContentLoaded', () => {
     new VideoManager();
     new RowAnimationManager();
-}); 
+});
+
+// Function to scroll to top of page smoothly
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+} 

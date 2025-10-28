@@ -18,7 +18,9 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <h2>Mirror Mirror AI</h2>
+                <a href="#" onclick="scrollToTop()" style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <h2>Mirror Mirror AI</h2>
+                </a>
             </div>
             <div class="nav-links">
                 <a href="#abstract">Abstract</a>
@@ -64,7 +66,7 @@
                             <i class="fas fa-file-alt"></i>
                             Summary Document
                         </a>
-                        <a href="https://github.com/iLihiS/git-dinamic-page" class="btn btn-secondary" target="_blank">
+                        <a href="https://github.com/aviad1486/Machine-Learning" class="btn btn-secondary" target="_blank">
                             <i class="fab fa-github"></i>
                             Code
                         </a>
@@ -115,52 +117,63 @@
                     <div class="contribution-item">
                         <div class="retro-portrait">
                             <video width="100%" height="100%" controls muted loop playsinline>
-                                <source src="images/MarketingVideoDemo.mp4" type="video/mp4">
+                                <source src="images/KnownUser_RichHistory.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <h3>Real-Time User Recognition</h3>
-                        <p>Watch as the mirror instantly identifies different users and switches between their personal profiles, remembering individual preferences and style history for each person.</p>
+                        <h3>Known User With Rich History</h3>
+                        <p><strong>System operation on a known user with a rich data history:</strong>
+                            <br>Since the system recognizes the user as having extensive historical data, the recommendation provided is based on the system's AI model rather than on predefined rules.
+                        </p>
                     </div>
                     <div class="contribution-item">
                         <div class="retro-portrait">
                             <video width="100%" height="100%" controls muted loop playsinline>
-                                <source src="images/MarketingVideoDemo.mp4" type="video/mp4">
+                                <source src="images/KnownUser_PoorHistory.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <h3>Smart Clothing Detection</h3>
-                        <p>Our custom YOLO model accurately identifies clothing items in real-time, analyzing colors, patterns, and styles to understand what you're wearing or considering.</p>
+                        <h3>Known User With Poor History</h3>
+                        <p><strong>System operation on a known user with limited data:</strong>
+                            <br>Since the system recognizes the user as having not enough historical data, the recommendation provided is based on predefined system rules rather than on the AI model.
+                        </p>
                     </div>
                     <div class="contribution-item">
                         <div class="retro-portrait">
                             <video width="100%" height="100%" controls muted loop playsinline>
-                                <source src="images/MarketingVideoDemo.mp4" type="video/mp4">
+                                <source src="images/EnrollingNewUser.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <h3>Weather-Adaptive Suggestions</h3>
-                        <p>See live recommendations that adapt to current weather conditions, seamlessly blending comfort with style for the perfect daily outfit.</p>
+                        <h3>New User Registration</h3>
+                        <p><strong>System operation with a new user:</strong>
+                            <br>The system does not recognize the user, so the registration process is initiated.
+                            Once the user successfully registers, the system recognizes them again and updates the database accordingly.
+                        </p>
                     </div>
                     <div class="contribution-item">
                         <div class="retro-portrait">
                             <video width="100%" height="100%" controls muted loop playsinline>
-                                <source src="images/MarketingVideoDemo.mp4" type="video/mp4">
+                                <source src="images/DetectingClothes_NoFaceBadFeedback.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <h3>Natural Voice Interaction</h3>
-                        <p>Experience hands-free communication with speech-to-text input and text-to-speech responses, making the mirror accessible and intuitive for everyone.</p>
+                        <h3>Unknown User Providing <br> Voice Feedback</h3>
+                        <p><strong>System operation without face detection:</strong>
+                            <br>When no face is detected or the user is not registered, the system demonstrates its flexibility by operating in anonymous mode. Using advanced YOLO-based clothing detection, it analyzes the garments in real-time and provides weather-appropriate recommendations based on predefined rules. The system maintains its interactive capabilities through voice commands, allowing users to provide feedback ("too hot," "too cold," "comfortable") which helps refine the general recommendation algorithms for future anonymous users.
+                        </p>
                     </div>
                     <div class="contribution-item">
                         <div class="retro-portrait">
                             <video width="100%" height="100%" controls muted loop playsinline>
-                                <source src="images/MarketingVideoDemo.mp4" type="video/mp4">
+                                <source src="images/EdgeCases.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <h3>Learning from Feedback</h3>
-                        <p>Watch the AI evolve in real-time as it learns from user feedback like "too hot" or "perfect," continuously improving its recommendations for each individual.</p>
+                        <h3>Edge Cases Testing</h3>
+                        <p><strong>Testing system behavior without <br>camera access:</strong>
+                            <br>The system gracefully handles missing hardware by providing clear error messages and preventing camera-dependent operations.
+                        </p>
                     </div>
                 </div>
             </div>
